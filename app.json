@@ -1,0 +1,8 @@
+{
+  "name": "HeroPress",
+  "description": "CMS for Heroku",
+  "repository": "https://github.com/dthtvwls/HeroPress",
+  "logo": "http://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Electron_shell_001_Hydrogen_-_no_label.svg/200px-Electron_shell_001_Hydrogen_-_no_label.svg.png",
+  "keywords": ["cms", "microframework", "php", "slim", "handlebars", "pdo", "ckeditor"],
+  "addons": [ "heroku-postgresql:hobby-dev" ]
+}

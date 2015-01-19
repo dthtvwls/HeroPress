@@ -1,38 +1,41 @@
-# Slim Framework Skeleton Application
+# HeroPress
 
-Use this skeleton application to quickly setup and start working on a new Slim Framework application. This application uses the latest Slim and Slim-Views repositories. It also uses Sensio Labs' [Twig](http://twig.sensiolabs.org) template library.
+A micro CMS designed to cause as little cognitive overhead as possible to my workflow
+of creating marketing sites and iterating design and content.
 
-This skeleton application was built for Composer. This makes setting up a new Slim Framework application quick and easy.
+HeroPress is really a thin layer over the Slim framework, that manages slug => content pairs via PDO.
+The PDO abstraction makes it simple to use Heroku's Postgres on Heroku, but use SQLite in development.
+This is valuable to me because as long as I have access to a relatively recent Mac, I'm good to go.
 
-## Install Composer
+It also provides templating via Handlebars, which I prefer because I can reuse them in JS.
 
-If you have not installed Composer, do that now. I prefer to install Composer globally in `/usr/local/bin`, but you may also install Composer locally in your current working directory. For this tutorial, I assume you have installed Composer locally.
+The other big win is CKEditor's inline mode, which I use to allow authenticated users to update
+content with a solid WYSIWYG editor and no backend whatsoever.
 
-<http://getcomposer.org/doc/00-intro.md#installation>
+See public/index.php for a good default setup.
 
-## Install the Application
+## Setup
 
-After you install Composer, run this command from the directory in which you want to install your new Slim Framework application.
+After cloning:
 
-    php composer.phar create-project slim/slim-skeleton [my-app-name]
+`sqlite3 db/db.sqlite3 < db/schema.sql`
 
-Replace <code>[my-app-name]</code> with the desired directory name for your new application. You'll want to:
-* Point your virtual host document root to your new application's `public/` directory.
-* Ensure `logs/` and `templates/cache` are web writeable.
+`./composer install`
 
-That's it! Now go build something cool.
+`./composer test` (optional, run tests)
 
-## How to Contribute
+`./composer start` (to start dev server on port 8888)
 
-### Pull Requests
+There is a script called _create_user.php that can create users from the command line. There should be a cleaner way to do this.
 
-1. Fork the Slim Skeleton repository
-2. Create a new branch for each feature or improvement
-3. Send a pull request from each feature branch to the **develop** branch
+## Deployment
 
-It is very important to separate new features or improvements into separate feature branches, and to send a
-pull request for each branch. This allows us to review and pull in new features or improvements individually.
+`heroku create` (or `heroku create *mysitename*`)
 
-### Style Guide
+`heroku addons:add heroku-postgresql`
 
-All pull requests must adhere to the [PSR-2 standard](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md).
+`heroku pg:psql < db/schema.sql` (requires psql command line client, try `brew install postgresql` otherwise you're on your own)
+
+`git push heroku master`
+
+https://dashboard.heroku.com/new?template=https://github.com/dthtvwls/HeroPress

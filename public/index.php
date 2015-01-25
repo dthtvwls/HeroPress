@@ -14,7 +14,7 @@ if (isset($_ENV['DATABASE_URL'])) {
 }
 
 // Initialize the app
-$app = new HeroPress($dsn, __DIR__ . '/templates');
+$app = new HeroPress($dsn);
 
 /*
  * Default login/out handlers.

@@ -14,7 +14,7 @@ if (isset($_ENV['DATABASE_URL'])) {
 }
 
 // Initialize the app
-$app = new HeroPress($dsn);
+$app = new HeroPress($dsn, __DIR__ . '/templates');
 
 /*
  * Default login/out handlers.
@@ -37,7 +37,7 @@ $app->post('/:slug?', function ($slug = '') use ($app) {
  * Show the default layout and any content, for any unhandled GET slug.
  */
 $app->get('/:slug?', function ($slug = '') use ($app) {
-  $app->render('templates/layout.hbs', [
+  $app->render('layout', [
     'logged-in'  => $app->isLoggedIn(),
     'csrf-token' => $app->csrfToken(),
     'slug'       => $slug,

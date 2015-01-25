@@ -7,7 +7,7 @@ class HandlebarsViewTest extends PHPUnit_Framework_TestCase {
 
     ob_start();
 
-    $hv->render('data://text/plain,<p>{{greeting}}</p>');
+    $hv->render('data:text/plain,<p>{{greeting}}</p>');
     $this->assertEquals(ob_get_contents(), '<p>Hello World</p>');
 
     ob_end_clean();

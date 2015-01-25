@@ -3,7 +3,7 @@ class HeroPressTest extends PHPUnit_Framework_TestCase {
   static $app;
 
   static function setUpBeforeClass() {
-    self::$app = new HeroPress('sqlite::memory:');
+    self::$app = new HeroPress('sqlite::memory:', __DIR__ . '/../public/templates');
     self::$app->dbh->query(file_get_contents(__DIR__ . '/../db/schema.sql'));
   }
 

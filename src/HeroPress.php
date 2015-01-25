@@ -3,14 +3,17 @@ class HeroPress extends Slim\Slim {
 
   var $auth, $csrf, $dbh;
 
-  function __construct($dsn) {
+  function __construct($dsn, $templates_path) {
     session_start();
 
     $this->auth = new Aura\Auth\AuthFactory($_COOKIE);
     $this->csrf = (new Aura\Session\SessionFactory)->newInstance($_COOKIE)->getCsrfToken();
     $this->dbh  = new PDO($dsn);
 
-    return parent::__construct(['view' => new HandlebarsView]);
+    return parent::__construct([
+      'view'           => new HandlebarsView,
+      'templates.path' => $templates_path
+    ]);
   }
 
   function databaseLoginHandler() {

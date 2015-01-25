@@ -1,8 +1,8 @@
 <?php
-class HandlebarsViewTest extends PHPUnit_Framework_TestCase {
+class HandlebarsTest extends PHPUnit_Framework_TestCase {
   function testCanRender() {
 
-    $hv = new HandlebarsView;
+    $hv = new Handlebars;
     $hv->set('greeting', 'Hello World');
 
     ob_start();

@@ -1,5 +1,5 @@
 <?php
-class HandlebarsView extends Slim\View {
+class Handlebars extends Slim\View {
 
   var $fileext;
 

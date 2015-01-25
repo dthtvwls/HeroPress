@@ -11,7 +11,7 @@ class HeroPressTest extends PHPUnit_Framework_TestCase {
     $this->assertEquals(get_class(self::$app->auth), 'Aura\Auth\AuthFactory');
     $this->assertEquals(get_class(self::$app->csrf), 'Aura\Session\CsrfToken');
     $this->assertEquals(get_class(self::$app->dbh),  'PDO');
-    $this->assertEquals(get_class(self::$app->view), 'HandlebarsView');
+    $this->assertEquals(get_class(self::$app->view), 'Handlebars');
   }
 
   function testCsrf() {

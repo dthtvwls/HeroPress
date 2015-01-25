@@ -11,7 +11,7 @@ class HeroPress extends Slim\Slim {
     $this->dbh  = new PDO($dsn);
 
     return parent::__construct([
-      'view'           => new HandlebarsView,
+      'view'           => new Handlebars,
       'templates.path' => $templates_path
     ]);
   }

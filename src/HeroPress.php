@@ -19,9 +19,9 @@ class HeroPress extends Slim\Slim {
   function databaseLoginHandler() {
     return function () {
       try {
-        $this->auth->newLoginService(
-          $this->auth->newPdoAdapter($this->dbh, new Aura\Auth\Verifier\PasswordVerifier(PASSWORD_BCRYPT), ['username', 'password'], 'users')
-        )->login($this->auth->newInstance(), $_POST);
+        $this->auth->newLoginService($this->auth->newPdoAdapter(
+          $this->dbh, new Aura\Auth\Verifier\PasswordVerifier(PASSWORD_BCRYPT), ['username', 'password'], 'users'
+        ))->login($this->auth->newInstance(), $_POST);
       } catch (Exception $e) {
         $this->flash('error', ucfirst(strtolower(ltrim(preg_replace('/[A-Z]/', ' $0', array_pop(explode('\\', get_class($e))))))));
       }

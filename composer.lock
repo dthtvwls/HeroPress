@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "723564af9ccaa429cba7c0cf7f364536",
+    "hash": "2710e593a44ae874968f1e09ee500906",
     "packages": [
         {
             "name": "aura/auth",
@@ -364,16 +364,16 @@
         },
         {
             "name": "heroku/heroku-buildpack-php",
-            "version": "v55",
+            "version": "v57",
             "source": {
                 "type": "git",
                 "url": "https://github.com/heroku/heroku-buildpack-php.git",
-                "reference": "1846cbd1f609872ff774c203bc525ae5829505eb"
+                "reference": "166ad317a307082d037a6d201ddb602f3295af9a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/heroku/heroku-buildpack-php/zipball/1846cbd1f609872ff774c203bc525ae5829505eb",
-                "reference": "1846cbd1f609872ff774c203bc525ae5829505eb",
+                "url": "https://api.github.com/repos/heroku/heroku-buildpack-php/zipball/166ad317a307082d037a6d201ddb602f3295af9a",
+                "reference": "166ad317a307082d037a6d201ddb602f3295af9a",
                 "shasum": ""
             },
             "bin": [
@@ -404,7 +404,7 @@
                 "nginx",
                 "php"
             ],
-            "time": "2015-01-07 20:04:25"
+            "time": "2015-01-19 23:21:04"
         },
         {
             "name": "phpunit/php-code-coverage",

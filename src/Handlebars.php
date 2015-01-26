@@ -20,7 +20,7 @@ class Handlebars extends Slim\View {
     // So we're doing this manually instead
     if ($basedir = $this->getTemplatesDirectory()) {
       $opts['partials'] = array_reduce(scandir($basedir), function ($carry, $item) use ($basedir) {
-        $pathinfo = pathinfo("$basedir/$item");
+        $pathinfo = pathinfo($item);
         if ($pathinfo['extension'] === $this->fileext) {
           $carry[$pathinfo['filename']] = file_get_contents("$basedir/$item");
         }

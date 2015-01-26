@@ -37,12 +37,16 @@ $app->post('/:slug?', function ($slug = '') use ($app) {
  * Show the default layout and any content, for any unhandled GET slug.
  */
 $app->get('/:slug?', function ($slug = '') use ($app) {
-  $app->render('layout', [
-    'logged-in'  => $app->isLoggedIn(),
-    'csrf-token' => $app->csrfToken(),
-    'slug'       => $slug,
-    'content'    => $app->select($slug)
-  ]);
+  if ($app->request()->isAjax()) {
+    echo $app->select($slug);
+  } else {
+    $app->render('layout', [
+      'logged-in'  => $app->isLoggedIn(),
+      'csrf-token' => $app->csrfToken(),
+      'slug'       => $slug,
+      'content'    => $app->select($slug)
+    ]);
+  }
 });
 
 // Run the app

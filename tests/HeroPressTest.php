@@ -3,8 +3,8 @@ class HeroPressTest extends PHPUnit_Framework_TestCase {
   static $app;
 
   static function setUpBeforeClass() {
-    self::$app = new HeroPress('sqlite::memory:', __DIR__ . '/../public/templates');
-    self::$app->dbh->query(file_get_contents(__DIR__ . '/../db/schema.sql'));
+    self::$app = new HeroPress('sqlite::memory:');
+    self::$app->dbh->exec(file_get_contents(__DIR__ . '/../db/schema.sql'));
   }
 
   function testConstructor() {
@@ -23,14 +23,27 @@ class HeroPressTest extends PHPUnit_Framework_TestCase {
   }
 
   function testDBH() {
-    $this->assertEquals(self::$app->upsert('foo', 'bar'), 201);
-    $this->assertEquals(self::$app->upsert('foo', 'baz'), 200);
+    $this->assertEquals(self::$app->upsert('foo',  'bar'), 201);
+    $this->assertEquals(self::$app->select('foo'), 'bar');
+    $this->assertEquals(self::$app->upsert('foo',  'baz'), 200);
     $this->assertEquals(self::$app->select('foo'), 'baz');
   }
 
   function testLoginLogout() {
     $this->assertEquals(self::$app->isLoggedIn(), false);
-    self::$app->dbh->query('INSERT INTO users (username, password) VALUES ("username", "password")');
-    // unfinished
+
+    // bcrypt really slows the test down but I don't want to put some crypted string in the test
+    $password = password_hash("password", PASSWORD_BCRYPT);
+    self::$app->dbh->exec("INSERT INTO users (username, password) VALUES ('username', '$password')");
+
+    $login = self::$app->databaseLoginHandler(['username' => 'username', 'password' => 'password']);
+    $login();
+
+    $this->assertEquals(self::$app->isLoggedIn(), true);
+
+    $logout = self::$app->genericLogoutHandler();
+    $logout();
+
+    $this->assertEquals(self::$app->isLoggedIn(), false);
   }
 }

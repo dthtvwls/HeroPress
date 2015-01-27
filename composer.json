@@ -9,12 +9,12 @@
     "aura/auth": "2.0.0-beta2",
     "aura/session": "2.0.0-beta2",
     "ezyang/htmlpurifier": "~4.6.0",
-    "ircmaxell/password-compat": "~1.0.4",
     "slim/slim": "~2.5.0",
     "zordius/lightncandy": "0.18"
   },
   "require-dev": {
     "heroku/heroku-buildpack-php": "*",
+    "ircmaxell/password-compat": "~1.0.4",
     "phpunit/phpunit": "~4.4.4"
   },
   "scripts": {

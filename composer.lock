@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "288409e3d6c6ca91a94a1ee63eb98daf",
+    "hash": "ae17b573dfb86b352058fb246f50cb72",
     "packages": [
         {
             "name": "aura/auth",
@@ -1203,6 +1203,8 @@
     },
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": ">=5.4.0"
+    },
     "platform-dev": []
 }

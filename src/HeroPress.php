@@ -4,7 +4,7 @@ class HeroPress extends Slim\Slim {
   var $auth, $csrf, $dbh;
 
   function __construct($dsn, $opts = []) {
-    parent::__construct(array_merge($opts, ['view' => new Handlebars]));
+    parent::__construct(array_merge(['view' => new Handlebars], $opts));
 
     session_start();
 

@@ -13,12 +13,12 @@ class HeroPress extends Slim\Slim {
     $this->dbh  = new PDO($dsn);
   }
 
-  function databaseLoginHandler($input = null) {
-    return function () use ($input) {
+  function databaseLoginHandler($input = null, $cols = ['username', 'password'], $from = 'users') {
+    return function () use ($input, $cols, $from) {
       try {
         $this->auth->newLoginService($this->auth->newPdoAdapter(
-          $this->dbh, new Aura\Auth\Verifier\PasswordVerifier(PASSWORD_BCRYPT), ['username', 'password'], 'users'
-        ))->login($this->auth->newInstance(), $input === null ? $_POST : $input);
+          $this->dbh, new Aura\Auth\Verifier\PasswordVerifier(PASSWORD_BCRYPT), $cols, $from
+        ))->login($this->auth->newInstance(), $input === null && isset($_POST) ? $_POST : $input);
       } catch (Exception $e) {
         // this fun function list just transforms the exception's class name into sentence case
         $this->flash('error', ucfirst(strtolower(ltrim(preg_replace('/[A-Z]/', ' $0', array_pop(explode('\\', get_class($e))))))));

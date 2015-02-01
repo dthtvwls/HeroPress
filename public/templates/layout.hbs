@@ -36,7 +36,7 @@
         </div>
       {{/each}}
 
-      <div class="jumbotron" data-slug="{{slug}}"{{#if logged-in}} contenteditable="true"{{/if}}>{{{content}}}</div>
+      <div class="jumbotron">{{{editable slug content logged-in}}}</div>
     </div>
 
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">

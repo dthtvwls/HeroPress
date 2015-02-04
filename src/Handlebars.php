@@ -39,6 +39,11 @@ class Handlebars extends Slim\View {
   }
 
   static function editable($args) {
+    $app = HeroPress::getInstance();
+    
+    if (!isset($args[1])) $args[1] = $app->select($args[0]);
+    if (!isset($args[2])) $args[2] = $app->isLoggedIn();
+
     return "<div data-slug=\"$args[0]\"" . ($args[2] ? ' contenteditable="true"' : '') . ">$args[1]</div>";
   }
 }

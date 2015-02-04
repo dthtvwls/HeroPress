@@ -37,8 +37,7 @@ $app->map('/:slug?', function ($slug = '') use ($app) {
     $app->render('layout', [
       'logged-in'  => $app->isLoggedIn(),
       'csrf-token' => $app->csrfToken(),
-      'slug'       => $slug,
-      'content'    => $app->select($slug)
+      'slug'       => $slug
     ]);
   }
 })->via('GET', 'POST');

@@ -16,7 +16,9 @@
   "require-dev": {
     "heroku/heroku-buildpack-php": "*",
     "ircmaxell/password-compat": "~1.0.4",
-    "phpunit/phpunit": "~4.4.4"
+    "leafo/lessphp": "~0.5.0",
+    "phpunit/phpunit": "~4.4.4",
+    "twbs/bootstrap": "~3.3.2"
   },
   "scripts": {
     "start": "php -S localhost:8888 -t public/",

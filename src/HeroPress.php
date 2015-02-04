@@ -11,9 +11,10 @@ class HeroPress extends Slim\Slim {
     $this->auth = new Aura\Auth\AuthFactory($_COOKIE);
     $this->csrf = (new Aura\Session\SessionFactory)->newInstance($_COOKIE)->getCsrfToken();
     $this->dbh  = new PDO($dsn);
+    $this->xss  = new HTMLPurifier(HTMLPurifier_Config::createDefault());
   }
 
-  function databaseLoginHandler($input = null, $cols = ['username', 'password'], $from = 'users') {
+  function dbLogin($input = null, $cols = ['username', 'password'], $from = 'users') {
     return function () use ($input, $cols, $from) {
       try {
         $this->auth->newLoginService($this->auth->newPdoAdapter(
@@ -27,7 +28,7 @@ class HeroPress extends Slim\Slim {
     };
   }
 
-  function genericLogoutHandler() {
+  function logout() {
     return function () {
       $this->auth->newLogoutService()->logout($this->auth->newInstance());
       $this->redirectBack();
@@ -51,12 +52,12 @@ class HeroPress extends Slim\Slim {
     return $this->csrf->isValid($test);
   }
 
-  function filterXSS($string) {
-    return (new HTMLPurifier(HTMLPurifier_Config::createDefault()))->purify($string);
+  function purify($string) {
+    return $this->xss->purify($string);
   }
 
   function upsert($slug, $content) {
-    $params = [':slug' => $slug, ':content' => $this->filterXSS($content)];
+    $params = [':slug' => $this->purify($slug), ':content' => $this->purify($content)];
 
     if ($this->dbh->prepare('INSERT INTO content (slug, content) VALUES (:slug, :content)')->execute($params)) {
       return 201;

@@ -11,6 +11,7 @@ class HeroPressTest extends PHPUnit_Framework_TestCase {
     $this->assertEquals(get_class(self::$app->auth), 'Aura\Auth\AuthFactory');
     $this->assertEquals(get_class(self::$app->csrf), 'Aura\Session\CsrfToken');
     $this->assertEquals(get_class(self::$app->dbh),  'PDO');
+    $this->assertEquals(get_class(self::$app->xss),  'HTMLPurifier');
     $this->assertEquals(get_class(self::$app->view), 'Handlebars');
   }
 
@@ -18,8 +19,8 @@ class HeroPressTest extends PHPUnit_Framework_TestCase {
     $this->assertEquals(self::$app->csrfValid(self::$app->csrfToken()), true);
   }
 
-  function testFilterXSS() {
-    $this->assertEquals(self::$app->filterXSS('<img src="javascript:evil()" onload="evil()">'), '');
+  function testXSS() {
+    $this->assertEquals(self::$app->purify('<img src="javascript:evil()" onload="evil()">'), '');
   }
 
   function testDBH() {
@@ -36,12 +37,12 @@ class HeroPressTest extends PHPUnit_Framework_TestCase {
     $password = password_hash("password", PASSWORD_BCRYPT);
     self::$app->dbh->exec("INSERT INTO users (username, password) VALUES ('username', '$password')");
 
-    $login = self::$app->databaseLoginHandler(['username' => 'username', 'password' => 'password']);
+    $login = self::$app->dbLogin(['username' => 'username', 'password' => 'password']);
     $login();
 
     $this->assertEquals(self::$app->isLoggedIn(), true);
 
-    $logout = self::$app->genericLogoutHandler();
+    $logout = self::$app->logout();
     $logout();
 
     $this->assertEquals(self::$app->isLoggedIn(), false);

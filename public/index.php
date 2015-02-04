@@ -2,9 +2,8 @@
 require __DIR__ . '/../vendor/autoload.php';
 
 /*
- * This strategy is meant to use Heroku Postgres on Heroku
- * and a SQLite DB otherwise.
- * Feel free to change it.
+ * Construct a DSN, using DATABASE_URL if defined (as on Heroku)
+ * or a local SQLite DB file otherwise
  */
 if (isset($_ENV['DATABASE_URL'])) {
   $p = parse_url($_ENV['DATABASE_URL']);
@@ -16,29 +15,24 @@ if (isset($_ENV['DATABASE_URL'])) {
 // Initialize the app
 $app = new HeroPress($dsn);
 
-/*
- * Default login/out handlers.
- * Change URLs freely but remember to update them in templates.
- */
-$app->post('/login/', $app->databaseLoginHandler());
-$app->get('/logout/', $app->genericLogoutHandler());
+// Define endpoints for login and logout handlers
+$app->post('/login/', $app->dbLogin());
+$app->get('/logout/', $app->logout());
+
 
 /*
- * Treat any unhandled POST request as an attempt to upsert a slug's content.
+ * Catch-all route. Should be last.
  */
-$app->post('/:slug?', function ($slug = '') use ($app) {
-  $app->response()->status(
-    $app->isLoggedIn() && $app->csrfValid() ?
-      $app->upsert($slug, file_get_contents('php://input')) : 401
-  );
-});
+$app->map('/:slug?', function ($slug = '') use ($app) {
 
-/*
- * Show the default layout and any content, for any unhandled GET slug.
- */
-$app->get('/:slug?', function ($slug = '') use ($app) {
-  if ($app->request()->isAjax()) {
+  if ($app->request()->isPost()) {
+    $app->response()->status(
+      $app->isLoggedIn() && $app->csrfValid() ? $app->upsert($slug, file_get_contents('php://input')) : 401
+    );
+
+  } else if ($app->request()->isAjax()) {
     echo $app->select($slug);
+
   } else {
     $app->render('layout', [
       'logged-in'  => $app->isLoggedIn(),
@@ -47,7 +41,8 @@ $app->get('/:slug?', function ($slug = '') use ($app) {
       'content'    => $app->select($slug)
     ]);
   }
-});
+})->via('GET', 'POST');
+
 
 // Run the app
 $app->run();

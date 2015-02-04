@@ -29,10 +29,11 @@ class Handlebars extends Slim\View {
     // use template from partials or read from file
     $renderer = LightnCandy::prepare(LightnCandy::compile(
       array_key_exists($template, $this->partials) ? $this->partials[$template] : file_get_contents($template), [
-      'flags'    => LightnCandy::FLAG_HANDLEBARS,
-      'partials' => $this->partials,
-      'helpers'  => ['editable' => 'Handlebars::editable']
-    ]));
+        'flags'    => LightnCandy::FLAG_HANDLEBARS,
+        'partials' => $this->partials,
+        'helpers'  => ['editable' => 'Handlebars::editable']
+      ]
+    ));
 
     echo $renderer($this->data->all());
   }

@@ -1,5 +1,7 @@
 # HeroPress
 
+[![Build Status](https://travis-ci.org/dthtvwls/HeroPress.svg?branch=master)](https://travis-ci.org/dthtvwls/HeroPress)
+
 A micro CMS designed to cause as little cognitive overhead as possible to my workflow
 of creating marketing sites and iterating design and content.
 

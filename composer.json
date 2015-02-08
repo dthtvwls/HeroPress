@@ -22,6 +22,6 @@
   },
   "scripts": {
     "start": "php -S localhost:8888 -t public/",
-    "test": "phpunit --stderr tests/"
+    "test": "phpunit --bootstrap vendor/autoload.php --stderr tests/"
   }
 }

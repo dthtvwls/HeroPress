@@ -6,11 +6,8 @@ class HeroPress extends Slim\Slim {
   function __construct($dsn, $opts = []) {
     parent::__construct(array_merge(['view' => new Handlebars], $opts));
 
+    header_remove();
     session_start();
-
-    header_remove('Server');
-    header_remove('Via');
-    header_remove('X-Powered-By');
 
     $this->auth = new Aura\Auth\AuthFactory($_COOKIE);
     $this->csrf = (new Aura\Session\SessionFactory)->newInstance($_COOKIE)->getCsrfToken();

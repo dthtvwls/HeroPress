@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Heropress by dthtvwls</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Heropress</h1>
+        <p>Micro CMS</p>
+
+        <p class="view"><a href="https://github.com/dthtvwls/HeroPress">View the Project on GitHub <small>dthtvwls/HeroPress</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/dthtvwls/HeroPress/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/dthtvwls/HeroPress/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/dthtvwls/HeroPress">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="heropress" class="anchor" href="#heropress" aria-hidden="true"><span class="octicon octicon-link"></span></a>HeroPress</h1>
+
+<p><a href="https://travis-ci.org/dthtvwls/HeroPress"><img src="https://travis-ci.org/dthtvwls/HeroPress.svg?branch=master" alt="Build Status"></a></p>
+
+<p>A micro CMS designed to cause as little cognitive overhead as possible to my workflow
+of creating marketing sites and iterating design and content.</p>
+
+<p>HeroPress is really a thin layer over the Slim framework, that manages slug =&gt; content pairs via PDO.
+The PDO abstraction makes it simple to use Heroku's Postgres on Heroku, but use SQLite in development.
+This is valuable to me because as long as I have access to a relatively recent Mac, I'm good to go.</p>
+
+<p>It also provides templating via Handlebars, which I prefer because I can reuse them in JS.</p>
+
+<p>The other big win is CKEditor's inline mode, which I use to allow authenticated users to update
+content with a solid WYSIWYG editor and no backend whatsoever.</p>
+
+<p>See public/index.php for a good default setup.</p>
+
+<h2>
+<a id="setup" class="anchor" href="#setup" aria-hidden="true"><span class="octicon octicon-link"></span></a>Setup</h2>
+
+<p>After cloning:</p>
+
+<p><code>sqlite3 db/db.sqlite3 &lt; db/schema.sql</code></p>
+
+<p><code>./composer install</code></p>
+
+<p><code>./composer test</code> (optional, run tests)</p>
+
+<p><code>./composer start</code> (to start dev server on port 8888)</p>
+
+<p>There is a script called _create_user.php that can create users from the command line. There should be a cleaner way to do this.</p>
+
+<h2>
+<a id="deployment" class="anchor" href="#deployment" aria-hidden="true"><span class="octicon octicon-link"></span></a>Deployment</h2>
+
+<p><code>heroku create</code> (or <code>heroku create *mysitename*</code>)</p>
+
+<p><code>heroku addons:add heroku-postgresql</code></p>
+
+<p><code>heroku pg:psql &lt; db/schema.sql</code> (requires psql command line client, try <code>brew install postgresql</code> otherwise you're on your own)</p>
+
+<p><code>git push heroku master</code></p>
+
+<p><a href="https://dashboard.heroku.com/new?template=https://github.com/dthtvwls/HeroPress">https://dashboard.heroku.com/new?template=https://github.com/dthtvwls/HeroPress</a></p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/dthtvwls">dthtvwls</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>

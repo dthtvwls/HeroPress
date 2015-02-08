@@ -37,7 +37,10 @@ class HeroPress extends Slim\Slim {
   }
 
   function redirectBack() {
-    if (php_sapi_name() !== 'cli') $this->redirect(isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '/');
+    if (php_sapi_name() !== 'cli') {
+      $referer = $this->request->headers->get('Referer');
+      $this->redirect($referer ? $referer : '/');
+    }
   }
 
   function mergeParams($merge) {
@@ -56,7 +59,7 @@ class HeroPress extends Slim\Slim {
   }
 
   function csrfValid($test = null) {
-    if ($test === null && isset($_SERVER['HTTP_X_CSRF_TOKEN'])) $test = $_SERVER['HTTP_X_CSRF_TOKEN'];
+    if ($test === null) $test = $this->request->headers->get('X-CSRF-Token');
     return $this->csrf->isValid($test);
   }
 
@@ -65,7 +68,7 @@ class HeroPress extends Slim\Slim {
   }
 
   function upsert($slug, $content) {
-    $params = [':slug' => $this->purify($slug), ':content' => $this->purify($content)];
+    $params = [ ':slug' => $this->purify($slug), ':content' => $this->purify($content) ];
 
     if ($this->dbh->prepare('INSERT INTO content (slug, content) VALUES (:slug, :content)')->execute($params)) {
       return 201;

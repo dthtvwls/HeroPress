@@ -40,6 +40,13 @@ class HeroPress extends Slim\Slim {
     if (php_sapi_name() !== 'cli') $this->redirect(isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '/');
   }
 
+  function mergeParams($merge) {
+    return array_merge([
+      'logged-in'  => $this->isLoggedIn(),
+      'csrf-token' => $this->csrfToken()
+    ], $merge);
+  }
+
   function isLoggedIn() {
     return $this->auth->newInstance()->isValid();
   }

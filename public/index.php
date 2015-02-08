@@ -34,11 +34,7 @@ $app->map('/:slug?', function ($slug = '') use ($app) {
     echo $app->select($slug);
 
   } else {
-    $app->render('layout', [
-      'logged-in'  => $app->isLoggedIn(),
-      'csrf-token' => $app->csrfToken(),
-      'slug'       => $slug
-    ]);
+    $app->render('layout', $app->mergeParams([ 'slug' => $slug ]));
   }
 })->via('GET', 'POST');
 

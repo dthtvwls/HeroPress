@@ -67,7 +67,9 @@ class HeroPress extends Slim\Slim {
     return $this->xss->purify($string);
   }
 
-  function upsert($slug, $content) {
+  function upsert($slug, $content = null) {
+    if ($content === null) $content = $this->request->getBody();
+
     $params = [ ':slug' => $this->purify($slug), ':content' => $this->purify($content) ];
 
     if ($this->dbh->prepare('INSERT INTO content (slug, content) VALUES (:slug, :content)')->execute($params)) {

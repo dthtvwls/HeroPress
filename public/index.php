@@ -26,9 +26,7 @@ $app->get('/logout/', $app->logout());
 $app->map('/:slug?', function ($slug = '') use ($app) {
 
   if ($app->request->isPost()) {
-    $app->response->status(
-      $app->isLoggedIn() && $app->csrfValid() ? $app->upsert($slug, file_get_contents('php://input')) : 401
-    );
+    $app->response->status($app->isLoggedIn() && $app->csrfValid() ? $app->upsert($slug) : 401);
 
   } else if ($app->request->isAjax()) {
     echo $app->select($slug);

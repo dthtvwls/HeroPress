@@ -48,7 +48,8 @@ class HeroPress extends Slim\Slim {
   function mergeParams($merge) {
     return array_merge([
       'logged-in'  => $this->isLoggedIn(),
-      'csrf-token' => $this->csrfToken()
+      'csrf-token' => $this->csrfToken(),
+      'year'       => (new DateTime('now', new DateTimeZone('UTC')))->format('Y')
     ], $merge);
   }
 

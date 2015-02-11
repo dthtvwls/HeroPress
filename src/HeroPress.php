@@ -22,8 +22,9 @@ class HeroPress extends Slim\Slim {
           $this->dbh, new Aura\Auth\Verifier\PasswordVerifier(PASSWORD_BCRYPT), $cols, $from
         ))->login($this->auth->newInstance(), $input === null && isset($_POST) ? $_POST : $input);
       } catch (Exception $e) {
-        // this fun function list just transforms the exception's class name into sentence case
-        $this->flash('error', ucfirst(strtolower(ltrim(preg_replace('/[A-Z]/', ' $0', array_pop(explode('\\', get_class($e))))))));
+        // transform the exception's class name into sentence case
+        preg_match('/\w+$/', get_class($e), $matches);
+        $this->flash('error', ucfirst(strtolower(ltrim(preg_replace('/[A-Z]/', ' $0', $matches[0])))));
       }
       $this->redirectBack();
     };

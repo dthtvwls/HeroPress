@@ -1,5 +1,2 @@
 @import "//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css";
-
-* { outline: none; }
-
-body { padding-top: 70px; }
+@import "//cdn.rawgit.com/twbs/bootstrap/v3.3.2/docs/examples/sticky-footer-navbar/sticky-footer-navbar.css";

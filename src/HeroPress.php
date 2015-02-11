@@ -7,6 +7,7 @@ class HeroPress extends Slim\Slim {
     parent::__construct(array_merge(['view' => new Handlebars], $opts));
 
     header_remove();
+    session_name('session');
     session_start();
 
     $this->auth = new Aura\Auth\AuthFactory($_COOKIE);

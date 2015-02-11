@@ -23,22 +23,23 @@ CKEDITOR.on('instanceCreated', function (event) {
 // Send CSRF tokens based on meta tag
 $.ajaxSetup({ headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') } });
 
-// Add error notification for ajax calls, based on HTTP code
-$(document).ajaxError(function (e, xhr) {
-  var alert;
-
-  switch (xhr.status) {
-    case 401:
-      alert = 'Sorry, your session has timed out and you need to log in again.';
-      break;
-    case 500:
-      alert = 'Sorry, an error on the server prevented your request from completing.';
-      break;
-    default:
-      alert = 'Sorry, can\'t communicate with the server. Please check your connection and try again.';
-  }
-
-  $('#myModal').modal().find('.modal-body').contents().filter(function () {
+// Replace window.alert with a more humane function
+window.alert = function (alert) {
+  $('#alert').modal().find('.modal-body').contents().filter(function () {
     return this.nodeType === 3;
   }).last().replaceWith(document.createTextNode(alert));
+};
+
+// Add error notification for ajax calls, based on HTTP code
+$(document).ajaxError(function (e, xhr) {
+  switch (xhr.status) {
+    case 401:
+      alert('Sorry, your session has timed out and you need to log in again.');
+      break;
+    case 500:
+      alert('Sorry, an error on the server prevented your request from completing.');
+      break;
+    default:
+      alert('Sorry, can\'t communicate with the server. Please check your connection and try again.');
+  }
 });

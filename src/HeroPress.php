@@ -3,12 +3,21 @@ class HeroPress extends Slim\Slim {
 
   var $auth, $csrf, $dbh;
 
-  function __construct($dsn, $opts = []) {
+  function __construct($dsn = null, $opts = []) {
     parent::__construct(array_merge(['view' => new Handlebars], $opts));
 
     header_remove();
     session_name('session');
     session_start();
+
+    if ($dsn === null) {
+      if (isset($_ENV['DATABASE_URL'])) {
+        $url = parse_url($_ENV['DATABASE_URL']);
+        $dsn = "pgsql:user={$url['user']};password={$url['pass']};host={$url['host']};dbname=" . ltrim($url['path'], '/');
+      } else {
+        $dsn = 'sqlite:' . __DIR__ . '/../db/db.sqlite3';
+      }
+    }
 
     $this->auth = new Aura\Auth\AuthFactory($_COOKIE);
     $this->csrf = (new Aura\Session\SessionFactory)->newInstance($_COOKIE)->getCsrfToken();

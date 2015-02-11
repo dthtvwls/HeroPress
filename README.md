@@ -24,21 +24,25 @@ See public/index.php for a good default setup.
 
 After cloning:
 
-`sqlite3 db/db.sqlite3 < db/schema.sql`
+`db/create`
+
+`db/add-user`
 
 `./composer install`
 
 `./composer test` (optional, run tests)
 
-`./composer start` (to start dev server on port 8888)
-
-There is a script called _create_user.php that can create users from the command line. There should be a cleaner way to do this.
+`./composer start` (start dev server on port 8888)
 
 ## Deployment
 
 `heroku create` (or `heroku create *mysitename*`)
 
 `heroku addons:add heroku-postgresql`
+
+`heroku run db/create`
+
+`heroku run db/add-user`
 
 `heroku pg:psql < db/schema.sql` (requires psql command line client, try `brew install postgresql` otherwise you're on your own)
 

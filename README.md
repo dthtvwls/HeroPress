@@ -26,7 +26,7 @@ After cloning:
 
 `db/create`
 
-`db/add-user`
+`db/add-user` (create a username/password for logging in to edit content)
 
 `./composer install`
 
@@ -43,8 +43,6 @@ After cloning:
 `heroku run db/create`
 
 `heroku run db/add-user`
-
-`heroku pg:psql < db/schema.sql` (requires psql command line client, try `brew install postgresql` otherwise you're on your own)
 
 `git push heroku master`
 

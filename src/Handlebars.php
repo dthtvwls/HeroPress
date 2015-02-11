@@ -29,7 +29,7 @@ class Handlebars extends Slim\View {
     }
 
     // use template from partials or read from file
-    $renderer = LightnCandy::prepare(LightnCandy::compile(
+    $renderer = eval('?>' . LightnCandy::compile(
       array_key_exists($template, $partials) ? $partials[$template] : file_get_contents($template), [
         'flags'    => LightnCandy::FLAG_HANDLEBARS,
         'partials' => $partials,

@@ -6,19 +6,15 @@
 
 [![Build Status](https://travis-ci.org/dthtvwls/HeroPress.svg?branch=master)](https://travis-ci.org/dthtvwls/HeroPress)
 
-A micro CMS designed to cause as little cognitive overhead as possible to my workflow
-of creating marketing sites and iterating design and content.
+Guess what? I hate WordPress but I still need simple content management that runs on cheap hosting or Heroku.
 
-HeroPress is really a thin layer over the Slim framework, that manages slug => content pairs via PDO.
-The PDO abstraction makes it simple to use Heroku's Postgres on Heroku, but use SQLite in development.
-This is valuable to me because as long as I have access to a relatively recent Mac, I'm good to go.
+Slim because it's probably the nicest PHP microframework.
 
-It also provides templating via Handlebars, which I prefer because I can reuse them in JS.
+Handlebars because it's the best, period.
 
-The other big win is CKEditor's inline mode, which I use to allow authenticated users to update
-content with a solid WYSIWYG editor and no backend whatsoever.
+CKEditor because it's amazing, check it out: http://ckeditor.com/demo#inline
 
-See public/index.php for a good default setup.
+Has a small, solid codebase that's secure and tested.
 
 ## Setup
 

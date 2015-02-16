@@ -5,6 +5,9 @@
 [![Build Status](https://scrutinizer-ci.com/g/dthtvwls/HeroPress/badges/build.png?b=master)](https://scrutinizer-ci.com/g/dthtvwls/HeroPress/build-status/master)
 
 [![Build Status](https://travis-ci.org/dthtvwls/HeroPress.svg?branch=master)](https://travis-ci.org/dthtvwls/HeroPress)
+[![Dependency Status](https://gemnasium.com/dthtvwls/HeroPress.svg)](https://gemnasium.com/dthtvwls/HeroPress)
+[![Code Climate](https://codeclimate.com/github/dthtvwls/HeroPress/badges/gpa.svg)](https://codeclimate.com/github/dthtvwls/HeroPress)
+[![Test Coverage](https://codeclimate.com/github/dthtvwls/HeroPress/badges/coverage.svg)](https://codeclimate.com/github/dthtvwls/HeroPress)
 
 Guess what? I hate WordPress but I still need simple content management that runs on cheap hosting or Heroku.
 

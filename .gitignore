@@ -1,4 +1,4 @@
+build/logs/clover.xml
 db/db.sqlite3
 db/db.sqlite3-journal
 vendor/
-coverage.clover

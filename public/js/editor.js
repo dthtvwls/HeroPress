@@ -34,12 +34,12 @@ window.alert = function (alert) {
 $(document).ajaxError(function (e, xhr) {
   switch (xhr.status) {
     case 401:
-      alert('Sorry, your session has timed out and you need to log in again.');
+      window.alert('Sorry, your session has timed out and you need to log in again.');
       break;
     case 500:
-      alert('Sorry, an error on the server prevented your request from completing.');
+      window.alert('Sorry, an error on the server prevented your request from completing.');
       break;
     default:
-      alert('Sorry, can\'t communicate with the server. Please check your connection and try again.');
+      window.alert('Sorry, can\'t communicate with the server. Please check your connection and try again.');
   }
 });

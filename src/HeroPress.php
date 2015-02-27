@@ -3,7 +3,7 @@ class HeroPress extends Slim\Slim {
 
   var $auth, $csrf, $dbh, $xss;
 
-  function __construct($dsn = null, $opts = []) {
+  public function __construct($dsn = null, $opts = []) {
     parent::__construct(array_merge(['view' => new Handlebars], $opts));
 
     header_remove();
@@ -25,7 +25,7 @@ class HeroPress extends Slim\Slim {
     $this->xss  = new HTMLPurifier(HTMLPurifier_Config::createDefault());
   }
 
-  function dbLogin($input = null, $cols = ['username', 'password'], $from = 'users') {
+  public function dbLogin($input = null, $cols = ['username', 'password'], $from = 'users') {
     return function () use ($input, $cols, $from) {
       try {
         $this->auth->newLoginService($this->auth->newPdoAdapter(
@@ -40,21 +40,21 @@ class HeroPress extends Slim\Slim {
     };
   }
 
-  function logout() {
+  public function logout() {
     return function () {
       $this->auth->newLogoutService()->logout($this->auth->newInstance());
       $this->redirectBack();
     };
   }
 
-  function redirectBack() {
+  public function redirectBack() {
     if (php_sapi_name() !== 'cli') {
       $referer = $this->request->headers->get('Referer');
       $this->redirect($referer ? $referer : '/');
     }
   }
 
-  function mergeParams($merge) {
+  public function mergeParams($merge = []) {
     return array_merge([
       'logged-in'  => $this->isLoggedIn(),
       'csrf-token' => $this->csrfToken(),
@@ -62,24 +62,24 @@ class HeroPress extends Slim\Slim {
     ], $merge);
   }
 
-  function isLoggedIn() {
+  public function isLoggedIn() {
     return $this->auth->newInstance()->isValid();
   }
 
-  function csrfToken() {
+  public function csrfToken() {
     return $this->csrf->getValue();
   }
 
-  function csrfValid($test = null) {
+  public function csrfValid($test = null) {
     if ($test === null) $test = $this->request->headers->get('X-CSRF-Token');
     return $this->csrf->isValid($test);
   }
 
-  function purify($string) {
+  public function purify($string) {
     return $this->xss->purify($string);
   }
 
-  function upsert($slug, $content = null) {
+  public function upsert($slug, $content = null) {
     if ($content === null) $content = $this->request->getBody();
 
     $params = [ ':slug' => $this->purify($slug), ':content' => $this->purify($content) ];
@@ -93,7 +93,7 @@ class HeroPress extends Slim\Slim {
     }
   }
 
-  function select($slug) {
+  public function select($slug) {
     $sth = $this->dbh->prepare('SELECT content FROM content WHERE slug = :slug');
     $sth->execute([':slug' => $slug]);
     return $sth->fetchColumn();

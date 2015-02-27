@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "73e922d983571e0c801a153e00ae1c48",
+    "hash": "53eec14555568ba5ef931ce7aa93040d",
     "packages": [
         {
             "name": "aura/auth",
@@ -593,16 +593,16 @@
         },
         {
             "name": "heroku/heroku-buildpack-php",
-            "version": "v63",
+            "version": "v64",
             "source": {
                 "type": "git",
                 "url": "https://github.com/heroku/heroku-buildpack-php.git",
-                "reference": "62bddfebfd8c3e79b9710d11d558e07727356484"
+                "reference": "aea81319f561cf2eb581736b9b30e7a81c48363b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/heroku/heroku-buildpack-php/zipball/62bddfebfd8c3e79b9710d11d558e07727356484",
-                "reference": "62bddfebfd8c3e79b9710d11d558e07727356484",
+                "url": "https://api.github.com/repos/heroku/heroku-buildpack-php/zipball/aea81319f561cf2eb581736b9b30e7a81c48363b",
+                "reference": "aea81319f561cf2eb581736b9b30e7a81c48363b",
                 "shasum": ""
             },
             "bin": [
@@ -633,7 +633,7 @@
                 "nginx",
                 "php"
             ],
-            "time": "2015-02-10 23:24:07"
+            "time": "2015-02-19 09:59:04"
         },
         {
             "name": "ircmaxell/password-compat",

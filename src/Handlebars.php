@@ -3,12 +3,12 @@ class Handlebars extends Slim\View {
 
   var $fileext;
 
-  function __construct($fileext = 'hbs') {
+  public function __construct($fileext = 'hbs') {
     parent::__construct();
     $this->fileext = $fileext;
   }
 
-  function render($template, $data = null) {
+  public function render($template, $data = null) {
 
     /*
      * Load partials from the Slim templates dir, if present.
@@ -29,18 +29,21 @@ class Handlebars extends Slim\View {
     }
 
     // use template from partials or read from file
-    $renderer = eval('?>' . LightnCandy::compile(
+    // unconvinced that tmpfile is better than eval
+    $tmpfile = stream_get_meta_data(tmpfile())['uri'];
+    file_put_contents($tmpfile, LightnCandy::compile(
       array_key_exists($template, $partials) ? $partials[$template] : file_get_contents($template), [
         'flags'    => LightnCandy::FLAG_HANDLEBARS,
         'partials' => $partials,
         'helpers'  => ['editable' => 'Handlebars::editable']
       ]
     ));
+    $renderer = include($tmpfile);
 
     echo $renderer($this->data->all());
   }
 
-  static function editable($args) {
+  public static function editable($args) {
     $app = HeroPress::getInstance();
 
     if (!isset($args[1])) $args[1] = $app->select($args[0]);

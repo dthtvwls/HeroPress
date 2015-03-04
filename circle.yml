@@ -1,6 +1,6 @@
 machine:
   php:
-    version: 5.4
+    version: 5.4.4
 dependencies:
   override:
     - ./composer install

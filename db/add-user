@@ -6,4 +6,4 @@ require __DIR__ . '/../vendor/autoload.php';
 $username = readline('Enter username: ');
 $password = stripslashes(escapeshellcmd(password_hash(readline('Enter password: '), PASSWORD_BCRYPT)));
 
-(new HeroPress)->dbh->exec("INSERT INTO users (username, password) VALUES ('$username', '$password');");
+HeroPress\Data::getInstance()->exec("INSERT INTO users (username, password) VALUES ('$username', '$password');");

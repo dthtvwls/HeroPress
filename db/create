@@ -3,4 +3,4 @@
 if (php_sapi_name() !== 'cli') exit;
 require __DIR__ . '/../vendor/autoload.php';
 
-(new HeroPress)->dbh->exec(file_get_contents(__DIR__ . '/schema.sql'));
+HeroPress\Data::loadSchema();

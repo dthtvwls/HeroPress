@@ -1,7 +1,9 @@
 <?php
-class Handlebars extends Slim\View {
+namespace HeroPress;
 
-  var $fileext;
+class Handlebars extends \Slim\View {
+
+  private $fileext;
 
   public function __construct($fileext = 'hbs') {
     parent::__construct();
@@ -31,11 +33,11 @@ class Handlebars extends Slim\View {
     // use template from partials or read from file
     // unconvinced that tmpfile is better than eval
     $tmpfile = stream_get_meta_data(tmpfile())['uri'];
-    file_put_contents($tmpfile, LightnCandy::compile(
+    file_put_contents($tmpfile, \LightnCandy::compile(
       array_key_exists($template, $partials) ? $partials[$template] : file_get_contents($template), [
-        'flags'    => LightnCandy::FLAG_HANDLEBARS,
+        'flags'    => \LightnCandy::FLAG_HANDLEBARS,
         'partials' => $partials,
-        'helpers'  => ['editable' => 'Handlebars::editable']
+        'helpers'  => ['editable' => '\HeroPress\Handlebars::editable']
       ]
     ));
     $renderer = include($tmpfile);
@@ -44,10 +46,9 @@ class Handlebars extends Slim\View {
   }
 
   public static function editable($args) {
-    $app = HeroPress::getInstance();
-
-    if (!isset($args[1])) $args[1] = $app->select($args[0]);
-    if (!isset($args[2])) $args[2] = $app->isLoggedIn();
+    if (!isset($args[0])) $args[0] = '';
+    if (!isset($args[1])) $args[1] = \HeroPress\Data::select($args[0]);
+    if (!isset($args[2])) $args[2] = \HeroPress\Security::isLoggedIn();
 
     return "<div data-slug=\"$args[0]\"" . ($args[2] ? ' contenteditable="true"' : '') . ">$args[1]</div>";
   }

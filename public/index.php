@@ -1,14 +1,18 @@
 <?php
 require __DIR__ . '/../vendor/autoload.php';
 
+use HeroPress\App;
+use HeroPress\Data;
+use HeroPress\Security;
+
 
 // Initialize the app
-$app = new HeroPress;
+$app = new App;
 
 
 // Define endpoints for login and logout handlers
-$app->post('/login/', $app->dbLogin());
-$app->get('/logout/', $app->logout());
+$app->post('/login/', Security::login());
+$app->get('/logout/', Security::logout());
 
 
 /*
@@ -17,13 +21,13 @@ $app->get('/logout/', $app->logout());
 $app->map('/:slug?', function ($slug = '') use ($app) {
 
   if ($app->request->isPost()) {
-    $app->response->status($app->isLoggedIn() && $app->csrfValid() ? $app->upsert($slug) : 401);
+    $app->response->status(Security::isLoggedIn() && Security::csrfValid() ? Data::upsert($slug) : 401);
 
   } else if ($app->request->isAjax()) {
-    echo $app->select($slug);
+    echo Data::select($slug);
 
   } else {
-    $app->render('layout', $app->mergeParams([ 'slug' => $slug ]));
+    $app->render('layout', $app->addParams([ 'slug' => $slug ]));
   }
 })->via('GET', 'POST');
 

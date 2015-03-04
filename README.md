@@ -1,13 +1,19 @@
 # HeroPress
 
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/dthtvwls/HeroPress/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/dthtvwls/HeroPress/?branch=master)
+[![Code Climate](https://codeclimate.com/github/dthtvwls/HeroPress/badges/gpa.svg)](https://codeclimate.com/github/dthtvwls/HeroPress)
 [![Code Coverage](https://scrutinizer-ci.com/g/dthtvwls/HeroPress/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/dthtvwls/HeroPress/?branch=master)
-[![Build Status](https://scrutinizer-ci.com/g/dthtvwls/HeroPress/badges/build.png?b=master)](https://scrutinizer-ci.com/g/dthtvwls/HeroPress/build-status/master)
-
 [![Build Status](https://travis-ci.org/dthtvwls/HeroPress.svg?branch=master)](https://travis-ci.org/dthtvwls/HeroPress)
 [![Dependency Status](https://gemnasium.com/dthtvwls/HeroPress.svg)](https://gemnasium.com/dthtvwls/HeroPress)
-[![Code Climate](https://codeclimate.com/github/dthtvwls/HeroPress/badges/gpa.svg)](https://codeclimate.com/github/dthtvwls/HeroPress)
+[![Documentation Status](https://readthedocs.org/projects/heropress/badge/?version=latest)](https://readthedocs.org/projects/heropress/?badge=latest)
+
+<!--
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/dthtvwls/HeroPress/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/dthtvwls/HeroPress/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/dthtvwls/HeroPress/badges/build.png?b=master)](https://scrutinizer-ci.com/g/dthtvwls/HeroPress/build-status/master)
 [![Test Coverage](https://codeclimate.com/github/dthtvwls/HeroPress/badges/coverage.svg)](https://codeclimate.com/github/dthtvwls/HeroPress)
+[![Coverage Status](https://coveralls.io/repos/dthtvwls/HeroPress/badge.svg)](https://coveralls.io/r/dthtvwls/HeroPress)
+[![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/dthtvwls/HeroPress.svg)](http://isitmaintained.com/project/dthtvwls/HeroPress "Average time to resolve an issue")
+[![Percentage of issues still open](http://isitmaintained.com/badge/open/dthtvwls/HeroPress.svg)](http://isitmaintained.com/project/dthtvwls/HeroPress "Percentage of issues still open")
+-->
 
 Guess what? I hate WordPress but I still need simple content management that runs on cheap hosting or Heroku.
 

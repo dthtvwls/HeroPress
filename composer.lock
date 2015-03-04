@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "53eec14555568ba5ef931ce7aa93040d",
+    "hash": "34a510b8fa5d3384ae0ec2c650187c39",
     "packages": [
         {
             "name": "aura/auth",
@@ -173,16 +173,16 @@
         },
         {
             "name": "slim/slim",
-            "version": "2.5.0",
+            "version": "2.6.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/codeguy/Slim.git",
-                "reference": "04958a10ed95bc7bc97568e573877d4f9b62db48"
+                "url": "https://github.com/slimphp/Slim.git",
+                "reference": "365dbfa0c02a31e76888eaec693dacd9dca1c82a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/codeguy/Slim/zipball/04958a10ed95bc7bc97568e573877d4f9b62db48",
-                "reference": "04958a10ed95bc7bc97568e573877d4f9b62db48",
+                "url": "https://api.github.com/repos/slimphp/Slim/zipball/365dbfa0c02a31e76888eaec693dacd9dca1c82a",
+                "reference": "365dbfa0c02a31e76888eaec693dacd9dca1c82a",
                 "shasum": ""
             },
             "require": {
@@ -215,20 +215,20 @@
                 "rest",
                 "router"
             ],
-            "time": "2014-12-09 19:59:29"
+            "time": "2015-03-02 19:09:48"
         },
         {
             "name": "zordius/lightncandy",
-            "version": "v0.19",
+            "version": "v0.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zordius/lightncandy.git",
-                "reference": "954a56dbfb83cd9389250394158567eadb5379f6"
+                "reference": "257355494db7edb4738471fa7f2b247a2c4d8719"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zordius/lightncandy/zipball/954a56dbfb83cd9389250394158567eadb5379f6",
-                "reference": "954a56dbfb83cd9389250394158567eadb5379f6",
+                "url": "https://api.github.com/repos/zordius/lightncandy/zipball/257355494db7edb4738471fa7f2b247a2c4d8719",
+                "reference": "257355494db7edb4738471fa7f2b247a2c4d8719",
                 "shasum": ""
             },
             "require": {
@@ -262,7 +262,7 @@
                 "php",
                 "template"
             ],
-            "time": "2015-01-30 12:05:39"
+            "time": "2015-03-04 02:07:44"
         }
     ],
     "packages-dev": [
@@ -593,16 +593,16 @@
         },
         {
             "name": "heroku/heroku-buildpack-php",
-            "version": "v64",
+            "version": "v65",
             "source": {
                 "type": "git",
                 "url": "https://github.com/heroku/heroku-buildpack-php.git",
-                "reference": "aea81319f561cf2eb581736b9b30e7a81c48363b"
+                "reference": "93b29a99798fcd58d13f75fe8363aef2c1dbb472"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/heroku/heroku-buildpack-php/zipball/aea81319f561cf2eb581736b9b30e7a81c48363b",
-                "reference": "aea81319f561cf2eb581736b9b30e7a81c48363b",
+                "url": "https://api.github.com/repos/heroku/heroku-buildpack-php/zipball/93b29a99798fcd58d13f75fe8363aef2c1dbb472",
+                "reference": "93b29a99798fcd58d13f75fe8363aef2c1dbb472",
                 "shasum": ""
             },
             "bin": [
@@ -633,7 +633,7 @@
                 "nginx",
                 "php"
             ],
-            "time": "2015-02-19 09:59:04"
+            "time": "2015-03-03 16:27:14"
         },
         {
             "name": "ircmaxell/password-compat",

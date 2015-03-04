@@ -1,5 +1,7 @@
 <?php
-class HandlebarsTest extends PHPUnit_Framework_TestCase {
+namespace HeroPress;
+
+class HandlebarsTest extends \PHPUnit_Framework_TestCase {
   function testRender() {
 
     $view = new Handlebars;

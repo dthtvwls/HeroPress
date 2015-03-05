@@ -10,6 +10,7 @@
     "aura/auth": "2.0.0-beta2",
     "aura/session": "2.0.0-beta2",
     "ezyang/htmlpurifier": "~4.6.0",
+    "sendgrid/sendgrid": "~2.2.1",
     "slim/slim": "~2.6.1",
     "zordius/lightncandy": "0.20"
   },

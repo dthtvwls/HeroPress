@@ -3,7 +3,12 @@ machine:
     version: 5.4.4
 dependencies:
   override:
-    - ./composer install
+    #- ./composer install
+    - mkdir -p build/logs
+    - composer install --dev --no-interaction
+    - pecl install xdebug
+    - cat ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini | sed -e "s/;//" > xdebug.ini
+    - mv xdebug.ini ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini
 test:
   override:
     - ./composer test

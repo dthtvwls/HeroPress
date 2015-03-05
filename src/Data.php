@@ -11,10 +11,10 @@ class Data extends \PDO {
     parent::__construct(is_null($dsn) ? static::getdsn() : $dsn);
   }
 
-  public static function getdsn() {
+  private static function getdsn() {
     if ($database_url = getenv('DATABASE_URL')) {
-      $p = parse_url($database_url);
-      $dsn = "pgsql:user={$p['user']};password={$p['pass']};host={$p['host']};dbname=" . ltrim($p['path'], '/');
+      $url = parse_url($database_url);
+      $dsn = "pgsql:user={$url['user']};password={$url['pass']};host={$url['host']};dbname=" . ltrim($url['path'], '/');
     } else {
       $dsn = 'sqlite:' . __DIR__ . static::$default_dsn;
     }

@@ -11,6 +11,7 @@
 [![Build Status](https://scrutinizer-ci.com/g/dthtvwls/HeroPress/badges/build.png?b=master)](https://scrutinizer-ci.com/g/dthtvwls/HeroPress/build-status/master)
 [![Test Coverage](https://codeclimate.com/github/dthtvwls/HeroPress/badges/coverage.svg)](https://codeclimate.com/github/dthtvwls/HeroPress)
 [![Coverage Status](https://coveralls.io/repos/dthtvwls/HeroPress/badge.svg)](https://coveralls.io/r/dthtvwls/HeroPress)
+[![Dependency Status](https://www.versioneye.com/user/projects/54f767984f31083e1b0016cc/badge.svg?style=flat)](https://www.versioneye.com/user/projects/54f767984f31083e1b0016cc)
 [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/dthtvwls/HeroPress.svg)](http://isitmaintained.com/project/dthtvwls/HeroPress "Average time to resolve an issue")
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/dthtvwls/HeroPress.svg)](http://isitmaintained.com/project/dthtvwls/HeroPress "Percentage of issues still open")
 -->

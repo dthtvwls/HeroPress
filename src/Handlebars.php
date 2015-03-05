@@ -46,9 +46,13 @@ class Handlebars extends \Slim\View {
   }
 
   public static function editable($args) {
-    if (!isset($args[0])) $args[0] = '';
-    if (!isset($args[1])) $args[1] = \HeroPress\Data::select($args[0]);
-    if (!isset($args[2])) $args[2] = \HeroPress\Security::isLoggedIn();
+
+    // Case fall-through is intentional behavior
+    switch (count($args)) {
+      case 0: $args[0] = '';
+      case 1: $args[1] = \HeroPress\Data::select($args[0]);
+      case 2: $args[2] = \HeroPress\Security::isLoggedIn();
+    }
 
     return "<div data-slug=\"$args[0]\"" . ($args[2] ? ' contenteditable="true"' : '') . ">$args[1]</div>";
   }

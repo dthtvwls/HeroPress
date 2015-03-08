@@ -3,35 +3,37 @@ namespace HeroPress;
 
 class SecurityTest extends \PHPUnit_Framework_TestCase {
 
-  /*function testConstructor() {
-    $this->assertInstanceOf('Aura\Auth\AuthFactory',  static::$auth);
-    $this->assertInstanceOf('Aura\Session\CsrfToken', static::$csrf);
-    $this->assertInstanceOf('HTMLPurifier',           static::$xss);
-  }*/
-
-  /*function testCsrf() {
-    $this->assertEquals(Security::csrfValid(Security::csrfToken()), true);
-  }*/
-
-  function testXSS() {
-    $this->assertEquals(Security::purify('<img src="javascript:evil()" onload="evil()">'), '');
+  function setUp() {
+    $this->security = new Security;
   }
 
-  /*function testLoginLogout() {
-    $this->assertEquals(Security::isLoggedIn(), false);
+  function testCsrf() {
+    $this->assertEquals($this->security->_csrfValid($this->security->_csrfToken()), true);
+  }
 
-    // bcrypt really slows the test down but I don't want to put some crypted string in the test
-    $password = password_hash('password', PASSWORD_BCRYPT);
-    Data::getInstance()->exec("INSERT INTO users (username, password) VALUES ('username', '$password')");
+  function testXSS() {
+    $this->assertEquals($this->security->_purify('<img src="javascript:evil()" onload="evil()">'), '');
+  }
 
-    $login = Security::login(['username' => 'username', 'password' => 'password']);
+  function testLoginLogout() {
+
+    // Prep a db object and user
+    $data = new Data('sqlite::memory:');
+    $data->_loadSchema();
+    $data->exec("INSERT INTO users (username, password) VALUES ('username', '" . password_hash('password', PASSWORD_BCRYPT) . "')");
+    Data::setInstance($data);
+
+
+    $this->assertEquals($this->security->_isLoggedIn(), false);
+
+    $login = $this->security->_login(['username' => 'username', 'password' => 'password']);
     $login();
 
-    $this->assertEquals(Security::isLoggedIn(), true);
+    $this->assertEquals($this->security->_isLoggedIn(), true);
 
-    $logout = Security::logout();
+    $logout = $this->security->_logout();
     $logout();
 
-    $this->assertEquals(Security::isLoggedIn(), false);
-  }*/
+    $this->assertEquals($this->security->_isLoggedIn(), false);
+  }
 }

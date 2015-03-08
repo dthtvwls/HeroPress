@@ -5,8 +5,12 @@ trait Facade {
   private static $instance = null;
 
   public static function getInstance() {
-    if (is_null(static::$instance)) static::$instance = new static;
+    if (is_null(static::$instance)) static::setInstance(new static);
     return static::$instance;
+  }
+
+  public static function setInstance($instance) {
+    return static::$instance = $instance;
   }
 
   public static function __callStatic($name, $arguments) {

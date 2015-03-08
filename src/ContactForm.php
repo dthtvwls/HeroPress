@@ -19,13 +19,13 @@ class ContactForm {
 EOD;
   }
 
-  public static function handler($input = null) {
+  public static function handler($to, $input = null) {
     if (is_null($input) && isset($_POST)) $input = $_POST;
     return function () use ($input) {
       if ($username = getenv('SENDGRID_USERNAME') && $password = getenv('SENDGRID_PASSWORD')) {
         (new \SendGrid($username, $password))->send(
           (new \SendGrid\Email())->
-          addTo('josh.stauter@gmail.com')->
+          addTo($to)->
           setFrom($input['email'])->
           setSubject('Website Contact')->
           setText(implode("\n", $input))

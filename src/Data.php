@@ -5,7 +5,7 @@ class Data extends \PDO {
   private static $default_dsn = '/../db/db.sqlite3';
   private static $schema_path = '/../db/schema.sql';
 
-  use Singleton;
+  use Facade;
 
   public function __construct($dsn = null) {
     parent::__construct(is_null($dsn) ? static::getdsn() : $dsn);
@@ -21,26 +21,26 @@ class Data extends \PDO {
     return $dsn;
   }
 
-  public static function loadSchema($schema = null) {
-    static::getInstance()->exec(is_null($schema) ? file_get_contents(__DIR__ . static::$schema_path) : $schema);
+  public function _loadSchema($schema = null) {
+    $this->exec(is_null($schema) ? file_get_contents(__DIR__ . static::$schema_path) : $schema);
   }
 
-  public static function upsert($slug, $content = null) {
+  public function _upsert($slug, $content = null) {
     if (is_null($content)) $content = App::getInstance()->request->getBody();
 
     $params = [ ':slug' => Security::purify($slug), ':content' => Security::purify($content) ];
 
-    if (static::getInstance()->prepare('INSERT INTO content (slug, content) VALUES (:slug, :content)')->execute($params)) {
+    if ($this->prepare('INSERT INTO content (slug, content) VALUES (:slug, :content)')->execute($params)) {
       return 201;
-    } else if (static::getInstance()->prepare('UPDATE content SET content = :content WHERE slug = :slug')->execute($params)) {
+    } else if ($this->prepare('UPDATE content SET content = :content WHERE slug = :slug')->execute($params)) {
       return 200;
     } else {
       return 500;
     }
   }
 
-  public static function select($slug) {
-    $sth = static::getInstance()->prepare('SELECT content FROM content WHERE slug = :slug');
+  public function _select($slug) {
+    $sth = $this->prepare('SELECT content FROM content WHERE slug = :slug');
     $sth->execute([ ':slug' => $slug ]);
     return $sth->fetchColumn();
   }

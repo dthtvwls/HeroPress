@@ -27,8 +27,8 @@
   "scripts": {
     "start": "php -S localhost:8888 -t public/",
     "test": "phpunit",
-    "coverage": "ocular code-coverage:upload --format=php-clover build/logs/clover.xml",
     "coverage": "test-reporter",
-    "coverage": "coveralls"
+    "coverage": "coveralls",
+    "coverage": "ocular code-coverage:upload --format=php-clover build/logs/clover.xml"
   }
 }

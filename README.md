@@ -53,3 +53,5 @@ After cloning:
 `git push heroku master`
 
 https://dashboard.heroku.com/new?template=https://github.com/dthtvwls/HeroPress
+
+[![Launch on Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)

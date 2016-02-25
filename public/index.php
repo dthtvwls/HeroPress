@@ -13,16 +13,14 @@ $app->post('/login/', Security::login());
 $app->get('/logout/', Security::logout());
 
 
-/*
- * Catch-all route. Should be last.
- */
+// Catch-all route. Should be last.
 $app->map('/:slug?', function ($slug = '') use ($app) {
 
   if ($app->request->isPost()) {
     $app->response->status(Security::isLoggedIn() && Security::csrfValid() ? Data::upsert($slug) : 401);
 
-  /*} else if ($app->request->isAjax()) {
-    echo Data::select($slug);*/
+  } else if ($app->request->isAjax()) {
+    echo Data::select($slug);
 
   } else {
     $app->render('layout', $app->addParams([ 'slug' => $slug ]));

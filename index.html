@@ -6,8 +6,8 @@
     <title>Heropress by dthtvwls</title>
 
     <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -29,51 +29,38 @@
       </header>
       <section>
         <h1>
-<a id="heropress" class="anchor" href="#heropress" aria-hidden="true"><span class="octicon octicon-link"></span></a>HeroPress</h1>
+<a id="heropress" class="anchor" href="#heropress" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>HeroPress</h1>
 
 <p><a href="https://travis-ci.org/dthtvwls/HeroPress"><img src="https://travis-ci.org/dthtvwls/HeroPress.svg?branch=master" alt="Build Status"></a></p>
 
-<p>A micro CMS designed to cause as little cognitive overhead as possible to my workflow
-of creating marketing sites and iterating design and content.</p>
+<p>Simple CMS using Bootstrap, jQuery, and Handlebars. Uses PHP's Slim microframework on the backend and CKEditor for
+edit-in-place.</p>
 
-<p>HeroPress is really a thin layer over the Slim framework, that manages slug =&gt; content pairs via PDO.
-The PDO abstraction makes it simple to use Heroku's Postgres on Heroku, but use SQLite in development.
-This is valuable to me because as long as I have access to a relatively recent Mac, I'm good to go.</p>
-
-<p>It also provides templating via Handlebars, which I prefer because I can reuse them in JS.</p>
-
-<p>The other big win is CKEditor's inline mode, which I use to allow authenticated users to update
-content with a solid WYSIWYG editor and no backend whatsoever.</p>
-
-<p>See public/index.php for a good default setup.</p>
+<p>Demo: <a href="http://hero-press.herokuapp.com/">http://hero-press.herokuapp.com/</a> (username: <a href="mailto:example@example.com">example@example.com</a>, password: "example") (Try navigating to a random url)</p>
 
 <h2>
-<a id="setup" class="anchor" href="#setup" aria-hidden="true"><span class="octicon octicon-link"></span></a>Setup</h2>
+<a id="setup" class="anchor" href="#setup" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Setup</h2>
 
 <p>After cloning:</p>
 
-<p><code>sqlite3 db/db.sqlite3 &lt; db/schema.sql</code></p>
+<p><code>db/create</code></p>
+
+<p><code>db/add-user</code> (create a username/password for logging in to edit content)</p>
 
 <p><code>./composer install</code></p>
 
-<p><code>./composer test</code> (optional, run tests)</p>
-
-<p><code>./composer start</code> (to start dev server on port 8888)</p>
-
-<p>There is a script called _create_user.php that can create users from the command line. There should be a cleaner way to do this.</p>
+<p><code>./composer start</code> (start dev server on port 8888)</p>
 
 <h2>
-<a id="deployment" class="anchor" href="#deployment" aria-hidden="true"><span class="octicon octicon-link"></span></a>Deployment</h2>
+<a id="deployment" class="anchor" href="#deployment" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Deployment</h2>
 
-<p><code>heroku create</code> (or <code>heroku create *mysitename*</code>)</p>
+<p><a href="https://dashboard.heroku.com/new?template=https://github.com/dthtvwls/HeroPress"><img src="https://www.herokucdn.com/deploy/button.svg" alt="Launch on Heroku"></a></p>
 
-<p><code>heroku addons:add heroku-postgresql</code></p>
+<p>Don't forget to run afterwards:</p>
 
-<p><code>heroku pg:psql &lt; db/schema.sql</code> (requires psql command line client, try <code>brew install postgresql</code> otherwise you're on your own)</p>
+<p><code>heroku run db/create</code></p>
 
-<p><code>git push heroku master</code></p>
-
-<p><a href="https://dashboard.heroku.com/new?template=https://github.com/dthtvwls/HeroPress">https://dashboard.heroku.com/new?template=https://github.com/dthtvwls/HeroPress</a></p>
+<p><code>heroku run db/add-user</code></p>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/dthtvwls">dthtvwls</a></p>
